@@ -42,5 +42,9 @@ Total: 32+subjective/40
 ## Usage
 Navigate to https://batmanmuseum.web.app/ to use the app.
 
+Admin account:
+* Email: admin@batmanmuseum.web.app
+* Password: Batmanadmin123
+
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for more information.
