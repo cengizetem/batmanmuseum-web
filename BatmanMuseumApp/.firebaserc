@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "batmanmuseum-szte": {
+      "hosting": {
+        "BatmanMuseumApp": [
+          "batmanmuseum"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "batmanmuseum-szte"
+  }
+}

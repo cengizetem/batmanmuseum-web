@@ -1,0 +1,71 @@
+<div style="height: 100vh;">
+    <mat-toolbar color="black">
+      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <div fxShow="true" fxHide.gt-sm="true">
+          <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+        <img src="assets/images/logo.png" alt="Logo" class="logo">
+        <div fxShow="true" fxHide.lt-md="true" style="display: flex; justify-content: center; align-items: center;">
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/dashboard']" mat-button color="white-item">Dashboard</a>
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/tickets']" mat-button color="white-item">Tickets</a>
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/settings']" mat-button color="white-item">Settings</a>
+          <a mat-button  *ngIf="user.isAdmin" routerLinkActive="bold-item" [routerLink]="['/admin']" mat-button color="white-item">Admin</a>
+        </div> 
+      </div>
+    </mat-toolbar>
+  
+    <mat-sidenav-container fxFlexFill class="container">
+      <mat-sidenav #sidenav mode="side" opened="false">
+        <div fxLayout="column" class="sidemenu">
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/dashboard']" mat-button color="nodecoration">Dashboard</a>
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/tickets']" mat-button color="nodecoration">Tickets</a>
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/settings']" mat-button color="nodecoration">Settings</a>
+          <a mat-button  *ngIf="user.isAdmin"  routerLinkActive="bold-item" [routerLink]="['/admin']" mat-button color="nodecoration">Admin</a>
+        </div>
+      </mat-sidenav>
+      <mat-sidenav-content fxFlexFill>
+        <mat-card fxLayout="column" class="profile-card" *ngIf="profileForm != undefined">
+          <mat-card-title>Profile Settings</mat-card-title>
+          <mat-card-content>
+            <form [formGroup]="profileForm">
+              <mat-form-field>
+                <input matInput placeholder="Full Name*" formControlName="fullname" value="{{user.fullname}}">
+                <mat-error *ngIf="fullname?.errors?.['required']">Type in your <b>Full name</b></mat-error>
+              </mat-form-field> <br>
+              <mat-form-field>
+                <input matInput placeholder="Address*" formControlName="address">
+                <mat-error *ngIf="address?.errors?.['required']">Type in your <b>Address</b></mat-error>
+              </mat-form-field><br>
+              <mat-form-field>
+                <input matInput placeholder="Phone Number*" formControlName="phoneNumber">
+                <mat-error *ngIf="phoneNumber?.errors?.['required']">Type in your <b>Phone number</b></mat-error>
+              </mat-form-field><br>
+              <mat-form-field>
+                <textarea matInput placeholder="Review" formControlName="review"></textarea>
+              </mat-form-field><br>
+            </form>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="(fullname?.errors?.['required'] || address?.errors?.['required'] 
+            || phoneNumber?.errors?.['required'] || review?.errors?.['required'])">Save Changes</button>
+          </mat-card-actions>
+          <p>*This information also counts as billing data.</p>
+        </mat-card>
+        <mat-card fxLayout="column" class="profile-card">
+            <mat-card-title>Sign out</mat-card-title>
+            <mat-card-content>
+              <button mat-raised-button color="bold" (click)="onLogout()">Sign out</button>
+            </mat-card-content>
+        </mat-card>
+        <mat-card fxLayout="column" class="profile-card">
+          <mat-card-title>Delete the account</mat-card-title>
+          <mat-card-content>
+            <button mat-raised-button color="red" (click)="onDelete()">Delete</button>
+          </mat-card-content>
+      </mat-card>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  

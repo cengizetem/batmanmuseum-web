@@ -1,0 +1,45 @@
+<div style="height: 100vh;">
+    <mat-toolbar color="black">
+      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <div fxShow="true" fxHide.gt-sm="true">
+          <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+        <img src="assets/images/logo.png" alt="Logo" class="logo">
+        <div fxShow="true" fxHide.lt-md="true" style="display: flex; justify-content: center; align-items: center;">
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/dashboard']" mat-button color="white-item">Dashboard</a>
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/tickets']" mat-button color="white-item">Tickets</a>
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/settings']" mat-button color="white-item">Settings</a>
+          <a mat-button  *ngIf="user.isAdmin" routerLinkActive="bold-item" [routerLink]="['/admin']" mat-button color="white-item">Admin</a>
+        </div> 
+      </div>
+    </mat-toolbar>
+  
+    <mat-sidenav-container fxFlexFill class="container">
+      <mat-sidenav #sidenav mode="side" opened="false">
+        <div fxLayout="column" class="sidemenu">
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/dashboard']" mat-button color="nodecoration">Dashboard</a>
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/tickets']" mat-button color="nodecoration">Tickets</a>
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/settings']" mat-button color="nodecoration">Settings</a>
+          <a mat-button  *ngIf="user.isAdmin"  routerLinkActive="bold-item" [routerLink]="['/admin']" mat-button color="nodecoration">Admin</a>
+        </div>
+      </mat-sidenav>
+      <mat-sidenav-content fxFlexFill>
+        <div class="container-cards">
+          <h1 class="title">Tickets</h1>
+          
+          <div class="cards-container">
+            <mat-card class="ticket-detail-card" *ngFor="let ticket of tickets">
+              <img mat-card-image src="{{ticket.gifUrl}}">
+              <mat-card-content>
+                <p>{{ticket.name | toUpperCase}}:  {{ticket.cost}} EUR</p>
+                <p>{{ticket.description}}</p>
+                <button mat-raised-button color="primary" (click)="buyTicket(ticket.id)" class="card-button">Buy Now</button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>

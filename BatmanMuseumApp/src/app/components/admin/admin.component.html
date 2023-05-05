@@ -1,0 +1,74 @@
+<div style="height: 100vh;">
+    <mat-toolbar color="black">
+      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <div fxShow="true" fxHide.gt-sm="true">
+          <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+        <img src="assets/images/logo.png" alt="Logo" class="logo">
+        <div fxShow="true" fxHide.lt-md="true" style="display: flex; justify-content: center; align-items: center;">
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/dashboard']" mat-button color="white-item">Dashboard</a>
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/tickets']" mat-button color="white-item">Tickets</a>
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/settings']" mat-button color="white-item">Settings</a>
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/admin']" mat-button color="white-item">Admin</a>
+        </div> 
+      </div>
+    </mat-toolbar>
+  
+    <mat-sidenav-container fxFlexFill class="container">
+      <mat-sidenav #sidenav mode="side" opened="false">
+        <div fxLayout="column" class="sidemenu">
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/dashboard']" mat-button color="nodecoration">Dashboard</a>
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/tickets']" mat-button color="nodecoration">Tickets</a>
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/settings']" mat-button color="nodecoration">Settings</a>
+          <a mat-button routerLinkActive="bold-item" [routerLink]="['/admin']" mat-button color="nodecoration">Admin</a>
+        </div>
+      </mat-sidenav>
+      <mat-sidenav-content fxFlexFill>
+        <div style="display: flex; justify-content: center;
+        align-items: center; margin-bottom: 20px; margin-top: 20px;">
+        <h1>Tickets</h1>
+        <button (click)="createTicket()" mat-button class="button is-small is-primary" style="border-radius: 40px;"><mat-icon style="position: absolute; left: 33%;">library_add</mat-icon></button>
+        </div>
+        <div class="container">
+          <div class="b-table">
+            <div class="table-wrapper has-mobile-cards">
+              <table class="table is-fullwidth is-striped is-hoverable is-fullwidth">
+                <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Cost</th>
+                  <th>Description</th>
+                  <th>GIF Url</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody *ngFor="let ticket of tickets">
+                  <tr>
+                    <td data-label="ID" >{{ticket.id}}</td>
+                    <td data-label="Name">{{ticket.name}}</td>
+                    <td data-label="Cost">{{ticket.cost}}</td>
+                    <td data-label="Description">{{ticket.description}}</td>
+                    <td data-label="GIF Url">{{ticket.gifUrl}}</td>
+                    <td class="is-actions-cell">
+                      <div class="buttons is-right">
+                        <button mat-button class="button is-small is-primary" (click)="updateTicket(ticket)">
+                        <mat-icon style="position: absolute; left: 35%;">remove_red_eye</mat-icon>
+                        </button>
+                        <button mat-button class="button is-small is-danger jb-modal" (click)="deleteTicket(ticket)">
+                          <mat-icon style="position: absolute; left: 35%;">delete</mat-icon>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  

@@ -1,0 +1,25 @@
+<app-home-header></app-home-header>
+<div class="container">
+  <h1 class="title">Tickets</h1>
+  <div class="cards-container">
+    <mat-card class="ticket-detail-card" *ngFor="let ticket of tickets">
+      <img mat-card-image src="{{ticket.gifUrl}}">
+      <mat-card-content>
+        <p>{{ticket.name | toUpperCase}}:  {{ticket.cost}} EUR</p>
+        <p>{{ticket.description}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <h1 class="title">Review</h1>
+  <div class="review-container">
+  <mat-card class="random-review-card" *ngFor="let review of reviews">
+    <mat-card-content class="card-content">
+      <p>{{review.review}}</p>
+      <p>- {{review.email}}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+</div>
+<footer>
+  <span>Batman Museum by Cengiz</span>
+</footer>

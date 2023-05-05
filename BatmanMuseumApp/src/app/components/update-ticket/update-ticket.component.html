@@ -1,0 +1,32 @@
+<div mat-dialog-content>
+        <mat-card>
+            <mat-card-content>
+              <mat-form-field>
+                <mat-label>Id</mat-label>
+                <input matInput [(ngModel)]="id" required disabled>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput [(ngModel)]="name" required>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Cost</mat-label>
+                <input matInput [(ngModel)]="cost" type="number" required>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea matInput [(ngModel)]="description" required></textarea>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Gif URL</mat-label>
+                <input matInput [(ngModel)]="gifUrl" required>
+              </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button [mat-dialog-close]="false">Cancel</button>
+                <button mat-raised-button  [mat-dialog-close]="true" color="primary" (click)="update()" [disabled]="
+                id.length === 0 || name.length === 0 || cost === null || cost === undefined || cost <= 0 || gifUrl.length === 0 || description.length === 0
+                ">Update</button>
+            </mat-card-actions>
+          </mat-card>
+    </div> 
